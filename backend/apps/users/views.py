@@ -1,13 +1,12 @@
 import logging
 
+from apps.jwt.authentication import CSRFEnforcedJWTCookieAuthentication
 from django.contrib.auth import get_user_model
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from drf_spectacular.utils import OpenApiResponse, extend_schema
 from rest_framework import mixins, permissions, viewsets
 from rest_framework.decorators import action
-
-from apps.jwt.authentication import CSRFEnforcedJWTCookieAuthentication
 
 from .permissions import CustomObjectPermissions
 from .serializers import UserSerializer
