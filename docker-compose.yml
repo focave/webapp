@@ -1,0 +1,105 @@
+version: "3"
+services:
+  db:
+    container_name: 'db'
+    image: postgres
+
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+
+    restart: always
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    networks:
+      - backend
+
+
+  redis:
+    container_name: 'redis'
+    image: redis:6
+    restart: always
+
+    volumes:
+      - redis_data:/bitnami/redis/data
+    
+    ports:
+      - "6379:6379"
+
+    networks:
+      - frontend
+
+    command: redis-server
+
+
+  backend:
+    container_name: 'backend'
+    build: backend
+    restart: always
+
+    depends_on:
+      - db
+
+    volumes:
+      - ./backend:/backend
+
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+
+      - BACKEND_HOST=${BACKEND_HOST}
+      - BACKEND_PORT=${BACKEND_PORT}
+
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    networks:
+      - backend
+      - frontend 
+
+    command: python manage.py runserver 0.0.0.0:${BACKEND_PORT}
+
+
+  frontend:
+    container_name: 'frontend'
+    build: frontend
+    restart: always
+
+    depends_on:
+      - backend
+      - redis
+
+    environment:
+      - VITE_BACKEND_HOST=${BACKEND_HOST}
+      - VITE_BACKEND_PORT=${BACKEND_PORT}
+
+    volumes:
+      - ./frontend:/frontend
+      - node_modules:/frontend/node_modules
+
+    
+    ports:
+      - "3000:3000"
+    networks:
+      - frontend
+
+    command: npm run dev
+
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+
+volumes:
+  node_modules:
+  postgres_data:
+  redis_data:

@@ -1,0 +1,15 @@
+{
+    "have-account": "Posiadasz już konto?",
+    "login": "Zaloguj się",
+    "title": "Dołącz teraz!",
+    "email": "Email",
+    "email-required": "Email jest wymagany",
+    "email-invalid": "Email jest niepoprawny",
+    "password": "Hasło",
+    "password-repeat": "Powtórz hasło",
+    "password-required": "Hasło jest wymagane",
+    "password-too-short": "Hasło jest za krótkie, musi mieć co najmniej 8 znaków",
+    "password-numeric": "Hasło nie może być całkowicie numeryczne",
+    "passwords-diffrent": "Hasła nie są takie same",
+    "register": "Zarejestruj"
+}

@@ -1,0 +1,12 @@
+{
+    "have-account": "Nie masz konta ?",
+    "login": "Zaloguj",
+    "title": "Witaj spowrotem!",
+    "register": "Zarejestruj się",
+    "email": "Email",
+    "email-required": "Email jest wymagany",
+    "email-invalid": "Email jest niepoprawny",
+    "password": "Hasło",
+    "password-repeat": "Powtórz hasło",
+    "password-required": "Hasło jest wymagane"
+}

@@ -1,0 +1,12 @@
+{
+    "have-account": "Already have an account?",
+    "login": "Login",
+    "title": "Welcome back!",
+    "register": "Register",
+    "email": "Email",
+    "email-required": "Email is required",
+    "email-invalid": "Email is invalid",
+    "password": "Password",
+    "password-repeat": "Repeat password",
+    "password-required": "Password is required"
+}

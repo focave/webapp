@@ -1,0 +1,45 @@
+name: Backend format and lint
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+  workflow_dispatch:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Black
+        uses: lgeiger/black-action@v1.0.1
+        with:
+          args: "backend --experimental-string-processing"
+
+      - name: Isort
+        uses: isort/isort-action@v0.1.0
+        with:
+          sortPaths: 'backend'
+          configuration: "--profile black"
+          requirementsFiles: "backend/requirements.txt"
+        
+      - name: Flake8
+        uses: TrueBrain/actions-flake8@v2.1
+        with:
+          path: "backend"
+          ignore: "E203"
+          max_line_length: 88
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'Format and lint Workflow'
+          git config --global user.email 'format-and-lint-workflow@users.noreply.github.com'
+          git pull
+          git add -u
+          git diff-index --quiet HEAD || git commit -m "Format and lint"
+          git push
+        

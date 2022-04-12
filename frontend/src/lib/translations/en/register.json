@@ -1,0 +1,15 @@
+{
+    "have-account": "Already have an account?",
+    "login": "login",
+    "title": "Join now!",
+    "register": "Register",
+    "email": "Email",
+    "email-required": "Email is required",
+    "email-invalid": "Email is invalid",
+    "password": "Password",
+    "password-repeat": "Repeat password",
+    "password-required": "Password is required",
+    "password-too-short": "Password is to short, it must have at least 8 characters",
+    "password-numeric": "Password cannot be entirely numeric",
+    "passwords-diffrent": "Passwords are not the same."
+}

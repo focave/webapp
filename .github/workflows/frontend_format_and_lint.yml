@@ -1,0 +1,42 @@
+name: Frontend format and lint
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+  workflow_dispatch:
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install modules
+        run: npm install
+        working-directory: frontend
+
+      - name: Prettier
+        run: npm run format
+        working-directory: frontend
+      
+      - name: Prettier lint
+        run: npm run lint:prettier
+        working-directory: frontend
+
+      - name: ESLint
+        run: npm run lint:eslint
+        working-directory: frontend
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'Format and lint Workflow'
+          git config --global user.email 'format-and-lint-workflow@users.noreply.github.com'
+          git pull
+          git add -u
+          git diff-index --quiet HEAD || git commit -m "Format and lint"
+          git push
+        
