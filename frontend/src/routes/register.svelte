@@ -139,7 +139,12 @@
                 {/if}
             </Field>
 
-            <Field field={password} label={$_('register.password')} type="password" on:input={() => password2.validate()}>
+            <Field
+                field={password}
+                label={$_('register.password')}
+                type="password"
+                on:input={() => password2.validate()}
+            >
                 {#if $form.hasError('password.required')}
                     {$_('register.password-required')}<br />
                 {:else}

@@ -49,12 +49,11 @@
     if ($count == 0) {
         setInterval(async () => {
             if ($user != null) {
-                await request('POST', '/token/refresh/')
-                    .then(async (response) => {
-                        if (response.status == 200) {
-                            console.log("/token/refresh: ", response.status)
-                        };
-                    })
+                await request('POST', '/token/refresh/').then(async (response) => {
+                    if (response.status == 200) {
+                        console.log('/token/refresh: ', response.status);
+                    }
+                });
             }
         }, 1000 * 60 * 5);
     }
