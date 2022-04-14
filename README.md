@@ -21,23 +21,32 @@ Focave is free and open source, self hosted planner for or your needs
 
 
 Clone the project
-
 ```bash
   git clone https://github.com/focave/focave
 ```
 
 Go to the project directory
-
 ```bash
   cd focave
 ```
 
-Start docker compose
+You need to apply migrations for the database to be initialized
+```bash
+docker compose run backend python manage.py makemigrations
+docker compose run backend python manage.py migrate
+```
 
+And create super user
+```bash
+docker compose run backend python manage.py createsuperuser
+```
+
+Then start docker compose
 ```bash
   docker compose up
 ```
-Frontend should be accessible on `127.0.0.1:3000` and backend on `127.0.0.1:8000`
+
+And frontend should be accessible on `127.0.0.1:3000` and backend on `127.0.0.1:8000`
 
 ## Features
 
