@@ -22,12 +22,17 @@ Focave is free and open source, self hosted planner for or your needs
 
 Clone the project
 ```bash
-  git clone https://github.com/focave/focave
+  git clone https://github.com/focave/webapp
 ```
 
 Go to the project directory
 ```bash
   cd focave
+```
+
+Build docker compose
+```bash
+  docker compose build
 ```
 
 You need to apply migrations for the database to be initialized
